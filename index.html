@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0c10" />
+    <meta name="description" content="Shader Lab: 12 hand-written GLSL effects with live controls, readable source and one-click 5-second loop recording." />
+    <title>Shader Lab</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <h1>Shader Lab</h1>
+          <p class="brand-sub">12 hand-written GLSL effects</p>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="seg" id="geometry" role="radiogroup" aria-label="Geometry"></div>
+        <button class="icon-btn" id="spin" type="button" aria-pressed="true" title="Turntable (T)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66" /><path d="M20 4v5h-5" /></svg>
+          <span class="sr-only">Turntable</span>
+        </button>
+        <button class="icon-btn" id="pause" type="button" aria-pressed="false" title="Pause time (Space)">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-pause"><path d="M8 5v14M16 5v14" /></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="ico-play"><path d="M7 5l12 7-12 7z" /></svg>
+          <span class="sr-only">Pause</span>
+        </button>
+        <button class="record-btn" id="record" type="button" title="Record a seamless 5-second loop">
+          <span class="rec-dot" aria-hidden="true"></span>
+          <span class="rec-label">Record 5s loop</span>
+          <span class="rec-progress" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <nav class="gallery" id="gallery" aria-label="Effects"></nav>
+
+      <section class="viewport" id="viewport">
+        <canvas id="gl" aria-label="3D shader preview"></canvas>
+        <div class="hud">
+          <span class="hud-index" id="hud-index"></span>
+          <h2 id="hud-title"></h2>
+        </div>
+        <div class="hud-hint">Drag to orbit · scroll to zoom</div>
+      </section>
+
+      <aside class="panel">
+        <div class="tabs" role="tablist">
+          <button class="tab active" role="tab" aria-selected="true" data-tab="controls" type="button">Controls</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="code" type="button">Shader code</button>
+        </div>
+        <div class="tab-body" id="tab-controls" role="tabpanel"></div>
+        <div class="tab-body code-view" id="tab-code" role="tabpanel" hidden>
+          <div class="chip-row" data-programs></div>
+          <div class="chip-row" data-stages></div>
+          <div class="code-head">
+            <span class="code-file" data-file></span>
+            <button class="btn-ghost small" type="button" data-copy>Copy</button>
+          </div>
+          <pre class="code"><code></code></pre>
+          <div class="legend">
+            <span class="tok-uniform">uniform</span>
+            <span class="tok-varying">varying</span>
+            <span class="tok-builtin">built-in fn</span>
+            <span class="tok-var">built-in var</span>
+            <span class="tok-comment">// comment</span>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
